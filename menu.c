@@ -80,8 +80,6 @@ int rodarMenu(int larguraJanela, int alturaJanela) {
 
             }
             
-            printf("%d", tela_do_jogo);
-
         }
         
         BeginDrawing();
@@ -117,7 +115,7 @@ int rodarMenu(int larguraJanela, int alturaJanela) {
         UnloadImage(botaoCreditos);
         UnloadImage(botaoStart);
         UnloadImage(chaveSeletora);
-        
+
         UnloadMusicStream(musicaMenu);
         
         CloseWindow();
