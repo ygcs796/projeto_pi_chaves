@@ -1,5 +1,4 @@
 #include "raylib.h"
-#include <stdlib.h>
 
 int rodar_creditos(int larguraTela, int alturaTela) {
 
