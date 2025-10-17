@@ -4,10 +4,7 @@
 int rodar_creditos(int larguraTela, int alturaTela) {
 
     int tela_atual_jogo = 1; // Isso significa que estamos nos créditos
-    int sair_do_creditos = 0;
-
-    // ativando as funções de áudio
-    InitAudioDevice();
+    int quero_sair_dos_creditos = 0;
 
     // carregando a imagem de fundo
     Image tela_fundo = LoadImage("imagens/imagem_creditos.png");
@@ -18,14 +15,14 @@ int rodar_creditos(int larguraTela, int alturaTela) {
     Music musica_creditos = LoadMusicStream("musicas/musica_creditos.ogg");
     PlayMusicStream(musica_creditos);
 
-    while (!WindowShouldClose() || !(sair_do_creditos))
+    while (!WindowShouldClose() && !(quero_sair_dos_creditos))
     {
         
         UpdateMusicStream(musica_creditos);
 
-        if(IsKeyPressed(KEY_W)) {
+        if(IsKeyPressed(KEY_ENTER)) {
 
-            sair_do_creditos = 1;
+            quero_sair_dos_creditos = 1;
             tela_atual_jogo = 0;
 
         }
@@ -41,7 +38,12 @@ int rodar_creditos(int larguraTela, int alturaTela) {
     UnloadImage(tela_fundo);
     UnloadMusicStream(musica_creditos);
 
-    CloseWindow();
+    if (!(quero_sair_dos_creditos))
+    {
+        /* code */
+        CloseWindow();
+
+    }
 
     return tela_atual_jogo;
 }

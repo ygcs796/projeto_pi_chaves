@@ -14,22 +14,38 @@ int main(void) {
 
     int tela_atual = 0;
 
+    InitAudioDevice();
+
     while (!WindowShouldClose())
     {
         
-        switch (tela_atual)
+        if (tela_atual == 0)
         {
-        case 0:
+            /* code */
             tela_atual = rodarMenu(largura_tela, altura_tela);
-            break;
 
-        case 1:
+        } else if (tela_atual == 1) {
+            
             tela_atual = rodar_creditos(largura_tela, altura_tela);
-            break;
-        
-        default:
-            break;
-        }    
+
+        } else if (tela_atual == 2) {
+
+            if (IsKeyPressed(KEY_ENTER))
+            {
+                /* code */
+                tela_atual = 0;
+
+            }
+            
+            
+            BeginDrawing();
+
+                ClearBackground(RAYWHITE);
+                DrawText("TELA DE GAMEPLAY", 900, altura_tela/2, 30, BLACK);
+
+            EndDrawing();
+
+        }
 
     }
     

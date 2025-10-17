@@ -5,8 +5,7 @@ int rodarMenu(int larguraJanela, int alturaJanela) {
 
     int opcao_selecionada = 1; // A opção que já vai vir selecionada vai ser o START
     int tela_do_jogo = 0; // configuração para dizer que estamos no MENU
-
-    InitAudioDevice();
+    int quero_sair_do_menu = 0;
 
     Image telaFundo = LoadImage("imagens/telaFundo.png");
     Image titulo = LoadImage("imagens/titulo.png");
@@ -37,7 +36,7 @@ int rodarMenu(int larguraJanela, int alturaJanela) {
     Music musicaMenu = LoadMusicStream("musicas/musicaMenu.ogg");
     PlayMusicStream(musicaMenu);
 
-    while (!WindowShouldClose())
+    while (!WindowShouldClose() && !(quero_sair_do_menu))
     {
         UpdateMusicStream(musicaMenu);
         
@@ -65,17 +64,19 @@ int rodarMenu(int larguraJanela, int alturaJanela) {
 
             }
             
-        } else if (IsKeyPressed(KEY_W))
+        } else if (IsKeyPressed(KEY_ENTER))
         {
             if (opcao_selecionada == 0)
             {
                 /* code */
                 tela_do_jogo = 1;
+                quero_sair_do_menu = 1;
 
             } else if (opcao_selecionada == 1)
             {
                 /* code */
                 tela_do_jogo = 2;
+                quero_sair_do_menu = 1;
 
             }
             
@@ -105,16 +106,23 @@ int rodarMenu(int larguraJanela, int alturaJanela) {
         
         EndDrawing();
     }
-    UnloadImage(telaFundo);
-    UnloadImage(titulo);
-    UnloadImage(subtitulo);
-    UnloadImage(chaves);
-    UnloadImage(botaoCreditos);
-    UnloadImage(botaoStart);
-    UnloadImage(chaveSeletora);
-    UnloadMusicStream(musicaMenu);
 
-    CloseWindow();
+    if (!(quero_sair_do_menu))
+    {
+        /* code */
+        UnloadImage(telaFundo);
+        UnloadImage(titulo);
+        UnloadImage(subtitulo);
+        UnloadImage(chaves);
+        UnloadImage(botaoCreditos);
+        UnloadImage(botaoStart);
+        UnloadImage(chaveSeletora);
+        UnloadMusicStream(musicaMenu);
+        
+        CloseWindow();
+
+    }
+    
 
     return tela_do_jogo;
 }
